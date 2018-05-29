@@ -20,7 +20,8 @@ namespace OthelloModel
             {
                 Console.WriteLine(point.X + ", " + point.Y + ": " + flips[tmpind++]);
             }
-            
+
+            System.Threading.Thread.Sleep(1000);
             return result;
         }
     }
