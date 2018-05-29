@@ -53,10 +53,6 @@ namespace OthelloWindows
                     TurnHandler(nextPlayer.Move(_game));
                 }
             }
-            else
-            {
-                Console.WriteLine("You can't put that there. Try somewhere else.\n");
-            }
 
             void UpdateBoard()
             {
@@ -71,8 +67,8 @@ namespace OthelloWindows
                         buttons[i, j].BackColor = playerColor(board[i, j]);
                     }
                 }
-
                 this.Invalidate();
+                this.Update();
             }
         }
 
