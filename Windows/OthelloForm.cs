@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GameFramework;
 using OthelloModel;
@@ -21,6 +15,8 @@ namespace OthelloWindows
             new Human(),
             new GreedyComputer(),
         };
+        
+        private static readonly String[] playerNames = { "Black", "White" };
 
         public OthelloForm()
         {
@@ -39,19 +35,30 @@ namespace OthelloWindows
 
                 if (response.won)
                 {
-                    Console.WriteLine("\nCongratulations, Player " + _game.GetPlayer() + " (" +
-                                      "OX".Substring(_game.GetPlayer() - 1, 1) + "), you won!");
+                    UpdateStatus(playerNames[_game.GetPlayer() - 1] + " wins!");
+                    System.Threading.Thread.Sleep(5000);
+                    this.Dispose();
                 }
                 else if (response.tied)
                 {
-                    Console.WriteLine(" It's a tie. Everyone wins! *smirk* ");
+                    UpdateStatus("It's a tie. Everyone wins! *smirk*");
+                    System.Threading.Thread.Sleep(5000);
+                    this.Dispose();
                 }
 
                 var nextPlayer = players[_game.GetPlayer() - 1];
-                if (!(nextPlayer is Human)) // Humans move asyncronysly using the form.
+                if (nextPlayer is Human)
                 {
+                    UpdateStatus("Click To Move");
+                } else
+                {
+                    UpdateStatus("Thinking...");
                     TurnHandler(nextPlayer.Move(_game));
                 }
+            }
+            else
+            {
+                UpdateStatus("Somewhere Else!");
             }
 
             void UpdateBoard()
@@ -67,9 +74,21 @@ namespace OthelloWindows
                         buttons[i, j].BackColor = playerColor(board[i, j]);
                     }
                 }
-                this.Invalidate();
-                this.Update();
+
+                UpdateStatus("");
             }
+        }
+
+        private void UpdateStatus(String text)
+        {
+            int[] scores = _game.GetScores();
+            
+            pieces.Text = String.Format("Black: {0} White: {1}", scores[0], scores[1]);
+            turn.Text = playerNames[_game.GetPlayer() - 1] + "'s Turn";
+            if(text!="") instruction.Text = text;
+
+            this.Invalidate();
+            this.Update();
         }
 
         private void InitializeButtons()
@@ -99,7 +118,10 @@ namespace OthelloWindows
             if (players[_game.GetPlayer() - 1] is Human)
             {
                 var b = sender as Button;
-                TurnHandler((b.Location.X / b.Width, b.Location.Y / b.Height));
+
+                Console.WriteLine((b.Location, b.Height, b.Width, (b.Location.X - 5) / b.Width, (b.Location.Y - 5) / b.Height));
+
+                TurnHandler(((b.Location.X - 5) / b.Width, (b.Location.Y - 5) / b.Height));
             }
         }
 
@@ -111,6 +133,10 @@ namespace OthelloWindows
         }
 
         private void board_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel_Paint(object sender, PaintEventArgs e)
         {
         }
     }
