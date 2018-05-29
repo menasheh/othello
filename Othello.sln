@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Othello", "Othello\Othello.csproj", "{9619FB4E-C2AF-44C8-A046-6C62A181794D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFramework", "GameFramework\GameFramework.csproj", "{2494A7DF-AF1D-4B9F-9BD6-C30095BE387F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameFramework", "GameFramework\GameFramework.csproj", "{2494A7DF-AF1D-4B9F-9BD6-C30095BE387F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleOthello", "ConsoleOthello\ConsoleOthello.csproj", "{FA3FFD4A-A27F-46B0-B0C8-A4CE4A4CAF27}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleOthello", "ConsoleOt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows", "Windows\Windows.csproj", "{B6BDC7AC-873A-4365-85CA-72D36F52D686}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OthelloWeb", "OthelloWeb\OthelloWeb.csproj", "{3F14F77D-A67B-4A02-A7B4-CBD11D1C22BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{B6BDC7AC-873A-4365-85CA-72D36F52D686}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6BDC7AC-873A-4365-85CA-72D36F52D686}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6BDC7AC-873A-4365-85CA-72D36F52D686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F14F77D-A67B-4A02-A7B4-CBD11D1C22BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F14F77D-A67B-4A02-A7B4-CBD11D1C22BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F14F77D-A67B-4A02-A7B4-CBD11D1C22BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F14F77D-A67B-4A02-A7B4-CBD11D1C22BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
