@@ -6,7 +6,7 @@
     ViewBag.Title = "Home Page";
     Othello game = Model;
     var board = game.GetBoard();
-    
+
     bool human = game.Players[game.GetPlayer() - 1] is Human;
 
     if
@@ -18,11 +18,8 @@
         @Html.ActionLink("Click Here To Start AI's Turn", "Move", new {row = move.y, col = move.x}, new {id = "ai_click"})
     }
 
-
     int[] scores = game.GetScores();
-
     var current = String.Format("Black: {0} White: {1}", scores[0], scores[1]);
-
     var turn = game.GetPlayer() == 1 ? "Black" : "White" + "'s Turn";
 }
 
@@ -45,33 +42,35 @@
     @for (int row = 1; row <= 8; row++)
     {
         <tr>
-            <th scope="row">@row </th>
+            <th scope="row">@row</th>
             @for (int col = 1; col <= 8; col++)
             {
-            <td>
-                @if (board[row - 1, col - 1] == 0)
+                <td>
+                    @if (board[row - 1, col - 1] == 0)
                     {
                         @Html.ActionLink("___", "Move", new {row = row - 1, col = col - 1})
-                }
-                else
-                {
-                @board[row - 1, col - 1].ToChar()
-                ;
-                }
+                    }
+                    else
+                    {
+                        @board[row - 1, col - 1].ToChar()
+                        ;
+                    }
 
-            </td>
+                </td>
             }
         </tr>
     }
 
     </tbody>
     <tfoot>
+</table>
+
+<table class="table table-bordered">
     <tr>
         <td>@current</td>
         <td></td>
-        <td>@turn</td>
+        <td>@turn's turn</td>
     </tr>
-    </tfoot>
 </table>
 
 <script>document.getElementById('ai_click').click();</script>
