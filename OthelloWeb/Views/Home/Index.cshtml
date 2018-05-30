@@ -15,12 +15,12 @@
         )
     {
         var move = game.Players[game.GetPlayer() - 1].Move(game);
-        @Html.ActionLink("Click Here To Start AI's Turn", "Move", new {row = move.y, col = move.x}, new {id = "ai_click"})
+        @Html.ActionLink("", "Move", new {row = move.y, col = move.x}, new {id = "ai_click"})
     }
 
     int[] scores = game.GetScores();
     var current = String.Format("Black: {0} White: {1}", scores[0], scores[1]);
-    var turn = game.GetPlayer() == 1 ? "Black" : "White" + "'s Turn";
+    var turn = (game.GetPlayer() == 1 ? "Black" : "White") + "'s Turn";
 }
 
 <table class="table table-bordered">
@@ -53,7 +53,6 @@
                     else
                     {
                         @board[row - 1, col - 1].ToChar()
-                        ;
                     }
 
                 </td>
@@ -69,7 +68,7 @@
     <tr>
         <td>@current</td>
         <td></td>
-        <td>@turn's turn</td>
+        <td>@turn</td>
     </tr>
 </table>
 
