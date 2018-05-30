@@ -6,13 +6,7 @@ namespace ConsoleOthello
 {
     class ConsoleOthello
     {
-        private static Othello _game = new Othello();
-
-        private static IPlay<Othello>[] players =
-        {
-            new Human(),
-            new GreedyComputer(), 
-        };
+        private static Othello _game = new Othello(new Human(), new GreedyComputer());
 
         static void Main(string[] args)
         {
@@ -26,7 +20,7 @@ namespace ConsoleOthello
 
                 if (!response.placed) Console.WriteLine("You can't put that there. Try somewhere else.\n");
 
-                input = players[_game.GetPlayer() - 1].Move(_game);
+                input = _game.Players[_game.GetPlayer() - 1].Move(_game);
 
                 response = _game.PlaceToken(input.y, input.x);
                 input = (-1, -1);

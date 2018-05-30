@@ -11,7 +11,7 @@ namespace OthelloWeb.Controllers
 {
     public static class Game
     {
-        public static Othello OthelloGame = new Othello();
+        public static Othello OthelloGame = new Othello(new Human(), new GreedyComputer());
 
         public static char ToChar(this int gp)
         {
@@ -61,7 +61,7 @@ namespace OthelloWeb.Controllers
                 RedirectToAction("Error");
             }
 
-            Game.OthelloGame.PlaceToken(row, col);
+            Console.WriteLine(Game.OthelloGame.PlaceToken(row, col));
 
             return RedirectToAction("Index");
         }

@@ -6,14 +6,36 @@
     ViewBag.Title = "Home Page";
     Othello game = Model;
     var board = game.GetBoard();
-    game.GetPlayer();
+    
+    bool human = game.Players[game.GetPlayer() - 1] is Human;
+
+    if
+        (!
+            human
+        )
+    {
+        var move = game.Players[game.GetPlayer() - 1].Move(game);
+        @Html.ActionLink("Click Here To Start AI's Turn", "Move", new {row = move.y, col = move.x}, new {id = "ai_click"})
+    }
+
+
+    int[] scores = game.GetScores();
+
+    var current = String.Format("Black: {0} White: {1}", scores[0], scores[1]);
+
+    var turn = game.GetPlayer() == 1 ? "Black" : "White" + "'s Turn";
 }
 
 <table class="table table-bordered">
     <thead>
     <tr>
         <th scope="col"></th>
-        @for (char c = 'A'; c <= 'H'; c++)
+        @for
+            (char c = 'A';
+            c
+            <= 'H';
+            c
+                ++)
         {
             <th scope="col">@c</th>
         }
@@ -23,24 +45,33 @@
     @for (int row = 1; row <= 8; row++)
     {
         <tr>
-            <th scope="row">@row</th>
+            <th scope="row">@row </th>
             @for (int col = 1; col <= 8; col++)
             {
-                <td>
-                    @if (board[row-1, col-1] == 0)
+            <td>
+                @if (board[row - 1, col - 1] == 0)
                     {
-                        @Html.ActionLink("___","Move", new {row = row-1, col = col - 1})
-                    }
-                    else
-                    {
-                        @board[row -1, col - 1].ToChar();
-                    }
-                        
-                    
-                </td>
+                        @Html.ActionLink("___", "Move", new {row = row - 1, col = col - 1})
+                }
+                else
+                {
+                @board[row - 1, col - 1].ToChar()
+                ;
+                }
+
+            </td>
             }
         </tr>
     }
-       
+
     </tbody>
+    <tfoot>
+    <tr>
+        <td>@current</td>
+        <td></td>
+        <td>@turn</td>
+    </tr>
+    </tfoot>
 </table>
+
+<script>document.getElementById('ai_click').click();</script>

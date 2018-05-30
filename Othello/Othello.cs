@@ -16,9 +16,11 @@ namespace OthelloModel
 
         public List<Point> LegalMoves { get; private set; }
 
+        public IPlay<Othello>[] Players { get; }
+
         private static readonly int[,] directions = {{0, 1}, {1, 1}, {1, 0}, {1, -1}};
 
-        public Othello()
+        public Othello(IPlay<Othello> p1, IPlay<Othello> p2)
         {
             _board = new int[BoardHeight, BoardWidth];
             _board[3, 3] = 1;
@@ -26,9 +28,10 @@ namespace OthelloModel
             _board[4, 3] = 2;
             _board[4, 4] = 1;
             _score[0] = _score[1] = 2;
-        }
+            Players = new [] { p1, p2 };
+    }
 
-        public int[,] GetBoard() => _board;
+    public int[,] GetBoard() => _board;
         public int GetPlayer() => _turn + 1;
         public int[] GetScores() => _score;
 

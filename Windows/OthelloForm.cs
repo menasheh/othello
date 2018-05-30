@@ -9,18 +9,12 @@ namespace OthelloWindows
     public partial class OthelloForm : Form
     {
         private static Othello _game;
-
-        private static IPlay<Othello>[] players =
-        {
-            new Human(),
-            new GreedyComputer(),
-        };
         
         private static readonly String[] playerNames = { "Black", "White" };
 
         public OthelloForm()
         {
-            _game = new Othello();
+            _game = new Othello(new Human(), new GreedyComputer());
             InitializeComponent();
             InitializeButtons();
         }
@@ -46,7 +40,7 @@ namespace OthelloWindows
                     this.Dispose();
                 }
 
-                var nextPlayer = players[_game.GetPlayer() - 1];
+                var nextPlayer = _game.Players[_game.GetPlayer() - 1];
                 if (nextPlayer is Human)
                 {
                     UpdateStatus("Click To Move");
@@ -115,7 +109,7 @@ namespace OthelloWindows
 
         private void ButtonClickHandler(object sender, EventArgs e)
         {
-            if (players[_game.GetPlayer() - 1] is Human)
+            if (_game.Players[_game.GetPlayer() - 1] is Human)
             {
                 var b = sender as Button;
 
