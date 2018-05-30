@@ -28,10 +28,10 @@ namespace OthelloModel
             _board[4, 3] = 2;
             _board[4, 4] = 1;
             _score[0] = _score[1] = 2;
-            Players = new [] { p1, p2 };
-    }
+            Players = new[] {p1, p2};
+        }
 
-    public int[,] GetBoard() => _board;
+        public int[,] GetBoard() => _board;
         public int GetPlayer() => _turn + 1;
         public int[] GetScores() => _score;
 
@@ -216,6 +216,20 @@ namespace OthelloModel
             }
 
             return flips;
+        }
+
+        public static int TurnsPlayed(int[,] board)
+        {
+            int count = 0;
+            foreach (int i in board)
+            {
+                if (i == 0)
+                {
+                    count++;
+                }
+            }
+
+            return 60 - count;
         }
 
     }

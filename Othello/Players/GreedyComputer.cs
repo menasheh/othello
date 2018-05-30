@@ -7,6 +7,7 @@ namespace OthelloModel
 {
     public class GreedyComputer : IPlay<Othello>
     {
+
         public (int x, int y) Move(Othello game)
         {
             var options = game.LegalMoves;

@@ -14,7 +14,7 @@ namespace OthelloWindows
 
         public OthelloForm()
         {
-            _game = new Othello(new Human(), new GreedyComputer());
+            _game = new Othello(new Human(), new ForesightAI(3));
             InitializeComponent();
             InitializeButtons();
         }
